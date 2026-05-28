@@ -15,8 +15,10 @@ With the advent of powerful machine learning systems all I hear now is about how
 
 With my new path I am starting from a relatively simple basis, a C++ memory allocator. I think a deep understanding of memory management is a hole in the coding LLMs' ability. They often generate bloated and inefficient code.
 
-> ... the examples i've seen of attempts for AI to generate code in this domain [systems engineering] has not been successful. They generate more bugs, more security holes, they have bloated code, which pessimize again because you use more memory ...<br>
-> — <cite>Bjarne Stroustrup</cite>
+> ... the examples i've seen of attempts for AI to generate code in this domain [systems engineering] has not been successful. They generate more bugs, more security holes, they have bloated code, which pessimize again because you use more memory ...
+
+— <cite>Bjarne Stroustrup</cite>
+
 From [Creator of C++: Bell Labs, Negative Overhead Abstraction, Mistakes | Bjarne Stroustrup](https://www.youtube.com/watch?v=U46fJ2bJ-co) at <i>1:28:51</i>
 
 Stroustrup highlights exactly why this foundational knowledge remains indespensible.

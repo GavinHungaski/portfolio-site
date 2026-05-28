@@ -1,8 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import FormattedDate from '../components/FormattedDate.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_DESCRIPTION, SITE_TITLE, SOCIAL_LINKS } from '../consts';
+import profilePic from '../assets/profile.jpeg';
 
 const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -30,15 +32,26 @@ const statusClass: Record<string, string> = {
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <!-- Hero -->
   <section class="hero">
-    <h1>Hi, I'm <span class="accent">Gavin Hungaski</span></h1>
-    <p class="tagline">
-      CS grad on a deliberate path from web developer to <strong>Robotics &amp; ML software engineer</strong> —
-      documenting every project, cert, and lesson along the way.
-    </p>
-    <div class="hero-links">
-      <a href="/blog" class="btn btn-primary">Read the Blog</a>
-      <a href="/about" class="btn btn-secondary">About Me</a>
-      <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+    <div class="hero-text">
+      <h1>Hi, I'm <span class="accent">Gavin Hungaski</span></h1>
+      <p class="tagline">
+        CS grad on a deliberate path from web developer to <strong>Robotics &amp; ML software engineer</strong> —
+        documenting every project, cert, and lesson along the way.
+      </p>
+      <div class="hero-links">
+        <a href="/blog" class="btn btn-primary">Read the Blog</a>
+        <a href="/about" class="btn btn-secondary">About Me</a>
+        <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <Image
+        src={profilePic}
+        alt="Gavin Hungaski"
+        width={220}
+        height={220}
+        class="profile-pic"
+      />
     </div>
   </section>
 
@@ -159,7 +172,15 @@ const statusClass: Record<string, string> = {
   /* Hero */
   .hero {
     padding: 3em 0 2em;
-    max-width: 640px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5em;
+    flex-wrap: wrap;
+  }
+  .hero-text {
+    flex: 1;
+    min-width: 260px;
   }
   .hero h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
@@ -179,6 +200,31 @@ const statusClass: Record<string, string> = {
     display: flex;
     gap: 0.75em;
     flex-wrap: wrap;
+  }
+  .hero-photo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .profile-pic {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 3px solid var(--border);
+  }
+  @media (max-width: 560px) {
+    .hero {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 1.5em;
+    }
+    .profile-pic {
+      width: 140px;
+      height: 140px;
+    }
   }
   .btn {
     display: inline-block;

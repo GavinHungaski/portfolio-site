@@ -2,7 +2,7 @@
 title: "Artifice Alley — MTG Deck Builder & Playtester"
 description: "A fullstack Magic: The Gathering deck building and playtesting web app. Users can search cards, build decks, and simulate gameplay — all powered by a React frontend, Express/Node backend, and PostgreSQL database. Live and hosted on Railway."
 status: "completed"
-tags: ["React", "Express", "Node.js", "PostgreSQL", "Railway", "Fullstack"]
+tags: ["React", "Express", "Node.js", "PostGreSQL", "Railway", "Fullstack"]
 order: 1
 section: "started"
 liveUrl: "https://artificealley.cloud/"

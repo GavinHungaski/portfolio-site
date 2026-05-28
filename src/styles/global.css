@@ -1,7 +1,11 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
 /*
-  Light-first theme with dark mode toggle.
-  CSS variables are set on :root (light) and overridden on html[data-theme="dark"].
+  Custom dark-mode variant — triggered by data-theme="dark" on the <html> element.
+  Works alongside Tailwind utilities, e.g. dark:bg-[var(--surface)].
 */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* ── Light theme (default) ────────────────────────────────────────── */
 :root {
@@ -36,11 +40,11 @@ html[data-theme="dark"] {
   --surface-2:     #21262d;
   --border:        #30363d;
 
-  --text:          230, 237, 243;   /* rgb triplet for rgba() usage */
+  --text:          230, 237, 243;
   --text-muted:    139, 148, 158;
-  --black:         230, 237, 243;   /* kept for legacy compat — maps to light text in dark mode */
+  --black:         230, 237, 243;
   --gray:          139, 148, 158;
-  --gray-light:    48, 54, 61;      /* borders / subtle backgrounds */
+  --gray-light:    48, 54, 61;
   --gray-dark:     189, 197, 207;
 
   --box-shadow:
@@ -51,52 +55,29 @@ html[data-theme="dark"] {
 
 /* ── Base styles ──────────────────────────────────────────────────── */
 body {
-  font-family: var(--font-atkinson);
+  font-family: var(--font-atkinson), sans-serif;
   margin: 0;
   padding: 0;
-  text-align: left;
   background-color: var(--bg);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
   color: rgb(var(--text));
   font-size: 20px;
   line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-main {
-  width: 760px;
-  max-width: calc(100% - 2em);
-  margin: auto;
-  padding: 3em 1em;
+@media (max-width: 720px) {
+  body { font-size: 18px; }
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 0.5rem 0;
-  color: rgb(var(--black));
-  line-height: 1.2;
-}
-h1 { font-size: 3.052em; }
-h2 { font-size: 2.441em; }
-h3 { font-size: 1.953em; }
-h4 { font-size: 1.563em; }
-h5 { font-size: 1.25em; }
-
-strong, b { font-weight: 700; }
-
+/* ── Markdown / prose element styles ─────────────────────────────── */
 a {
   color: var(--accent);
 }
 a:hover {
   color: var(--accent-dark);
 }
-
-p { margin-bottom: 1em; }
-.prose p { margin-bottom: 2em; }
-
-textarea { width: 100%; font-size: 16px; }
-input    { font-size: 16px; }
-table    { width: 100%; }
 
 img {
   max-width: 100%;
@@ -111,12 +92,14 @@ code {
   border-radius: 2px;
   font-size: 0.9em;
 }
+
 pre {
   padding: 1.5em;
   border-radius: 8px;
   background-color: var(--surface);
   border: 1px solid var(--border);
 }
+
 pre > code {
   all: unset;
 }
@@ -134,11 +117,7 @@ hr {
   border-top: 1px solid var(--border);
 }
 
-@media (max-width: 720px) {
-  body { font-size: 18px; }
-  main { padding: 1em; }
-}
-
+/* ── Accessibility ────────────────────────────────────────────────── */
 .sr-only {
   border: 0;
   padding: 0;

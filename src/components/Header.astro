@@ -4,23 +4,37 @@ import HeaderLink from "./HeaderLink.astro";
 import SocialLinks from "./SocialLinks.astro";
 ---
 
-<header>
-  <nav>
-    <h2><a href="/" class="site-title">{SITE_TITLE}</a></h2>
-    <div class="nav-right">
-      <div class="internal-links">
+<header
+  class="sticky top-0 z-50 bg-[var(--surface)] border-b border-[var(--border)] px-6 transition-colors duration-200"
+>
+  <nav class="flex items-center justify-between gap-4 h-14">
+    <!-- Site title -->
+    <h2 class="m-0 text-base whitespace-nowrap">
+      <a
+        href="/"
+        class="font-mono font-bold text-base tracking-tight no-underline text-[rgb(var(--black))] hover:text-[var(--accent)] transition-colors duration-150"
+      >
+        {SITE_TITLE}
+      </a>
+    </h2>
+
+    <!-- Nav links + social icons -->
+    <div class="flex items-center gap-2">
+      <div class="flex items-center">
         <HeaderLink href="/">Home</HeaderLink>
         <HeaderLink href="/blog">Blog</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
       </div>
-      {"|"}
-      <SocialLinks class="header-social" />
+      <span class="text-[rgb(var(--gray))] select-none">|</span>
+      <SocialLinks class="header-social hidden sm:flex" />
     </div>
+
+    <!-- Dark / light theme toggle -->
     <button
       id="theme-toggle"
-      class="theme-toggle"
       aria-label="Toggle light/dark theme"
       title="Toggle light/dark theme"
+      class="flex items-center justify-center w-[34px] h-[34px] shrink-0 border border-[var(--border)] rounded-md bg-transparent text-[rgb(var(--gray-dark))] cursor-pointer p-0 transition-colors duration-150 hover:text-[var(--accent)] hover:bg-[var(--surface-2)] hover:border-[var(--accent)]"
     >
       <!-- Sun icon (shown in dark mode to switch to light) -->
       <svg
@@ -66,6 +80,14 @@ import SocialLinks from "./SocialLinks.astro";
   </nav>
 </header>
 
+<!-- Icon visibility is toggled via CSS based on the data-theme attribute -->
+<style>
+  :root .icon-sun { display: none; }
+  :root .icon-moon { display: block; }
+  html[data-theme="dark"] .icon-moon { display: none; }
+  html[data-theme="dark"] .icon-sun { display: block; }
+</style>
+
 <script is:inline>
   const btn = document.getElementById("theme-toggle");
 
@@ -85,120 +107,3 @@ import SocialLinks from "./SocialLinks.astro";
     });
   }
 </script>
-
-<style>
-  header {
-    margin: 0;
-    padding: 0 1.5em;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    transition:
-      background 0.2s ease,
-      border-color 0.2s ease;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1em;
-    height: 56px;
-  }
-
-  .site-title {
-    font-family: monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: rgb(var(--black));
-    text-decoration: none;
-  }
-  .site-title:hover {
-    color: var(--accent);
-  }
-
-  h2 {
-    margin: 0;
-    font-size: 1em;
-    white-space: nowrap;
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-  }
-
-  .internal-links {
-    display: flex;
-    align-items: center;
-  }
-
-  nav :global(a) {
-    padding: 0.4em 0.65em;
-    color: rgb(var(--gray-dark));
-    text-decoration: none;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    transition:
-      color 0.15s,
-      background 0.15s;
-  }
-  nav :global(a:hover) {
-    color: var(--accent);
-    background: var(--surface-2);
-  }
-  nav :global(a.active) {
-    color: var(--accent);
-    font-weight: 700;
-    background: var(--surface-2);
-  }
-
-  /* Theme toggle button */
-  .theme-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: transparent;
-    color: rgb(var(--gray-dark));
-    cursor: pointer;
-    padding: 0;
-    transition:
-      color 0.15s,
-      background 0.15s,
-      border-color 0.15s;
-    flex-shrink: 0;
-  }
-  .theme-toggle:hover {
-    color: var(--accent);
-    background: var(--surface-2);
-    border-color: var(--accent);
-  }
-
-  /* Show moon in light mode (to switch to dark), sun in dark mode (to switch to light) */
-  :root .icon-sun {
-    display: none;
-  }
-  :root .icon-moon {
-    display: block;
-  }
-  html[data-theme="dark"] .icon-moon {
-    display: none;
-  }
-  html[data-theme="dark"] .icon-sun {
-    display: block;
-  }
-
-  @media (max-width: 720px) {
-    .header-social {
-      display: none;
-    }
-  }
-</style>

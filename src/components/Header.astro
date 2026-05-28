@@ -75,7 +75,7 @@ import SocialLinks from "./SocialLinks.astro";
   }
 
   function getCurrentTheme() {
-    return document.documentElement.dataset.theme ?? "dark";
+    return document.documentElement.dataset.theme ?? "light";
   }
 
   if (btn) {
@@ -182,18 +182,18 @@ import SocialLinks from "./SocialLinks.astro";
     border-color: var(--accent);
   }
 
-  /* Show sun in dark mode, moon in light mode */
-  :root .icon-moon {
-    display: none;
-  }
+  /* Show moon in light mode (to switch to dark), sun in dark mode (to switch to light) */
   :root .icon-sun {
-    display: block;
-  }
-  html[data-theme="light"] .icon-moon {
-    display: block;
-  }
-  html[data-theme="light"] .icon-sun {
     display: none;
+  }
+  :root .icon-moon {
+    display: block;
+  }
+  html[data-theme="dark"] .icon-moon {
+    display: none;
+  }
+  html[data-theme="dark"] .icon-sun {
+    display: block;
   }
 
   @media (max-width: 720px) {

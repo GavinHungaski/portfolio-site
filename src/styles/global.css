@@ -1,33 +1,10 @@
 /*
-  Dark-first theme with light mode toggle.
-  CSS variables are set on :root (dark) and overridden on html[data-theme="light"].
+  Light-first theme with dark mode toggle.
+  CSS variables are set on :root (light) and overridden on html[data-theme="dark"].
 */
 
-/* ── Dark theme (default) ─────────────────────────────────────────── */
+/* ── Light theme (default) ────────────────────────────────────────── */
 :root {
-  --accent:        #58a6ff;
-  --accent-dark:   #1f6feb;
-
-  --bg:            #0d1117;
-  --surface:       #161b22;
-  --surface-2:     #21262d;
-  --border:        #30363d;
-
-  --text:          230, 237, 243;   /* rgb triplet for rgba() usage */
-  --text-muted:    139, 148, 158;
-  --black:         230, 237, 243;   /* kept for legacy compat — maps to light text in dark mode */
-  --gray:          139, 148, 158;
-  --gray-light:    48, 54, 61;      /* borders / subtle backgrounds */
-  --gray-dark:     189, 197, 207;
-
-  --box-shadow:
-    0 2px 6px rgba(0,0,0,0.4),
-    0 8px 24px rgba(0,0,0,0.3),
-    0 16px 32px rgba(0,0,0,0.2);
-}
-
-/* ── Light theme ──────────────────────────────────────────────────── */
-html[data-theme="light"] {
   --accent:        #1a56db;
   --accent-dark:   #0f3fa8;
 
@@ -47,6 +24,29 @@ html[data-theme="light"] {
     0 2px 6px rgba(96,115,159,0.25),
     0 8px 24px rgba(96,115,159,0.33),
     0 16px 32px rgba(96,115,159,0.33);
+}
+
+/* ── Dark theme ───────────────────────────────────────────────────── */
+html[data-theme="dark"] {
+  --accent:        #58a6ff;
+  --accent-dark:   #1f6feb;
+
+  --bg:            #0d1117;
+  --surface:       #161b22;
+  --surface-2:     #21262d;
+  --border:        #30363d;
+
+  --text:          230, 237, 243;   /* rgb triplet for rgba() usage */
+  --text-muted:    139, 148, 158;
+  --black:         230, 237, 243;   /* kept for legacy compat — maps to light text in dark mode */
+  --gray:          139, 148, 158;
+  --gray-light:    48, 54, 61;      /* borders / subtle backgrounds */
+  --gray-dark:     189, 197, 207;
+
+  --box-shadow:
+    0 2px 6px rgba(0,0,0,0.4),
+    0 8px 24px rgba(0,0,0,0.3),
+    0 16px 32px rgba(0,0,0,0.2);
 }
 
 /* ── Base styles ──────────────────────────────────────────────────── */

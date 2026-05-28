@@ -9,8 +9,8 @@
 
 /* ── Light theme (default) ────────────────────────────────────────── */
 :root {
-  --accent:        #1a56db;
-  --accent-dark:   #0f3fa8;
+  --accent:        #307e36;
+  --accent-dark:   #08632e;
 
   --bg:            #ffffff;
   --surface:       #f6f8fa;
@@ -32,8 +32,8 @@
 
 /* ── Dark theme ───────────────────────────────────────────────────── */
 html[data-theme="dark"] {
-  --accent:        #58a6ff;
-  --accent-dark:   #1f6feb;
+  --accent:        #44aa4c;
+  --accent-dark:   #0c853e;
 
   --bg:            #0d1117;
   --surface:       #161b22;

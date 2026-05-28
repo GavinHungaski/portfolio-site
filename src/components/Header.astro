@@ -1,75 +1,203 @@
 ---
 import { SITE_TITLE } from "../consts";
 import HeaderLink from "./HeaderLink.astro";
+import SocialLinks from "./SocialLinks.astro";
 ---
 
 <header>
   <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
-    <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <HeaderLink href="/about">About</HeaderLink>
+    <h2><a href="/" class="site-title">{SITE_TITLE}</a></h2>
+    <div class="nav-right">
+      <div class="internal-links">
+        <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/blog">Blog</HeaderLink>
+        <HeaderLink href="/about">About</HeaderLink>
+      </div>
+      {"|"}
+      <SocialLinks class="header-social" />
     </div>
-    <div class="social-links">
-      <a href="https://linkedin.com/in/gavin-hungaski" target="_blank">
-        <span class="sr-only">Go to Gavin's LinkedIn profile</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true" width="32" height="32">
-          <path
-            fill="currentColor"
-            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-          ></path>
-        </svg>
-      </a>
-      <a href="https://github.com/GavinHungaski" target="_blank">
-        <span class="sr-only">Go to Gavin's GitHub profile</span>
-        <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-          ><path
-            fill="currentColor"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-          ></path></svg
-        >
-      </a>
-    </div>
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Toggle light/dark theme"
+      title="Toggle light/dark theme"
+    >
+      <!-- Sun icon (shown in dark mode to switch to light) -->
+      <svg
+        class="icon-sun"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <!-- Moon icon (shown in light mode to switch to dark) -->
+      <svg
+        class="icon-moon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="20"
+        height="20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
   </nav>
 </header>
+
+<script is:inline>
+  const btn = document.getElementById("theme-toggle");
+
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("theme", theme);
+  }
+
+  function getCurrentTheme() {
+    return document.documentElement.dataset.theme ?? "dark";
+  }
+
+  if (btn) {
+    btn.addEventListener("click", () => {
+      const next = getCurrentTheme() === "dark" ? "light" : "dark";
+      applyTheme(next);
+    });
+  }
+</script>
+
 <style>
   header {
     margin: 0;
-    padding: 0 1em;
-    background: white;
-    box-shadow: 0 2px 8px rgba(var(--black), 5%);
-  }
-  h2 {
-    margin: 0;
-    font-size: 1em;
+    padding: 0 1.5em;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
-  }
   nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1em;
+    height: 56px;
   }
-  nav a {
-    padding: 1em 0.5em;
-    color: var(--black);
-    border-bottom: 4px solid transparent;
+
+  .site-title {
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: rgb(var(--black));
     text-decoration: none;
   }
-  nav a.active {
-    text-decoration: none;
-    border-bottom-color: var(--accent);
+  .site-title:hover {
+    color: var(--accent);
   }
-  .social-links,
-  .social-links a {
+
+  h2 {
+    margin: 0;
+    font-size: 1em;
+    white-space: nowrap;
+  }
+
+  .nav-right {
     display: flex;
+    align-items: center;
+    gap: 0.5em;
   }
+
+  .internal-links {
+    display: flex;
+    align-items: center;
+  }
+
+  nav :global(a) {
+    padding: 0.4em 0.65em;
+    color: rgb(var(--gray-dark));
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition:
+      color 0.15s,
+      background 0.15s;
+  }
+  nav :global(a:hover) {
+    color: var(--accent);
+    background: var(--surface-2);
+  }
+  nav :global(a.active) {
+    color: var(--accent);
+    font-weight: 700;
+    background: var(--surface-2);
+  }
+
+  /* Theme toggle button */
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: rgb(var(--gray-dark));
+    cursor: pointer;
+    padding: 0;
+    transition:
+      color 0.15s,
+      background 0.15s,
+      border-color 0.15s;
+    flex-shrink: 0;
+  }
+  .theme-toggle:hover {
+    color: var(--accent);
+    background: var(--surface-2);
+    border-color: var(--accent);
+  }
+
+  /* Show sun in dark mode, moon in light mode */
+  :root .icon-moon {
+    display: none;
+  }
+  :root .icon-sun {
+    display: block;
+  }
+  html[data-theme="light"] .icon-moon {
+    display: block;
+  }
+  html[data-theme="light"] .icon-sun {
+    display: none;
+  }
+
   @media (max-width: 720px) {
-    .social-links {
+    .header-social {
       display: none;
     }
   }

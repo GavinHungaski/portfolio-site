@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseHead from "../../components/BaseHead.astro";
 import Footer from "../../components/Footer.astro";
@@ -15,73 +14,64 @@ const posts = (await getCollection("blog")).sort(
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={`Blog — ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
     <style>
-      main {
-        width: 960px;
+      .page-header {
+        margin-bottom: 2em;
       }
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
+      .page-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.25em;
       }
-      ul li {
-        width: calc(50% - 1rem);
-      }
-      ul li * {
-        text-decoration: none;
-        transition: 0.2s ease;
-      }
-      ul li:first-child {
-        width: 100%;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      ul li:first-child img {
-        width: 100%;
-      }
-      ul li:first-child .title {
-        font-size: 2.369rem;
-      }
-      ul li img {
-        margin-bottom: 0.5rem;
-        border-radius: 12px;
-      }
-      ul li a {
-        display: block;
-      }
-      .title {
-        margin: 0;
-        color: rgb(var(--black));
-        line-height: 1;
-      }
-      .date {
-        margin: 0;
+      .page-header p {
         color: rgb(var(--gray));
+        font-size: 0.95rem;
+        margin: 0;
       }
-      ul li a:hover h4,
-      ul li a:hover .date {
-        color: rgb(var(--accent));
+      .post-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
       }
-      ul a:hover img {
-        box-shadow: var(--box-shadow);
+      .post-list li {
+        border-bottom: 1px solid var(--border);
       }
-      @media (max-width: 720px) {
-        ul {
-          gap: 0.5em;
-        }
-        ul li {
-          width: 100%;
-          text-align: center;
-        }
-        ul li:first-child {
-          margin-bottom: 0;
-        }
-        ul li:first-child .title {
-          font-size: 1.563em;
+      .post-list li:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .post-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1.5em;
+        padding: 1em 0.5em;
+        text-decoration: none;
+        color: rgb(var(--black));
+        transition: color 0.15s, background 0.15s;
+        border-radius: 4px;
+      }
+      .post-link:hover {
+        color: var(--accent);
+        background: var(--surface-2);
+        padding-left: 0.75em;
+      }
+      .post-title {
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.4;
+      }
+      .post-date {
+        font-size: 0.82rem;
+        color: rgb(var(--gray));
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+      @media (max-width: 520px) {
+        .post-link {
+          flex-direction: column;
+          gap: 0.2em;
         }
       }
     </style>
@@ -89,29 +79,27 @@ const posts = (await getCollection("blog")).sort(
   <body>
     <Header />
     <main>
+      <div class="page-header">
+        <h1>Blog</h1>
+        <p>Notes, write-ups, and lessons from the path.</p>
+      </div>
       <section>
-        <ul>
-          {
-            posts.map((post) => (
+        {posts.length > 0 ? (
+          <ul class="post-list">
+            {posts.map((post) => (
               <li>
-                <a href={`/blog/${post.id}/`}>
-                  {post.data.heroImage && (
-                    <Image
-                      width={720}
-                      height={360}
-                      src={post.data.heroImage}
-                      alt=""
-                    />
-                  )}
-                  <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
+                <a href={`/blog/${post.id}/`} class="post-link">
+                  <span class="post-title">{post.data.title}</span>
+                  <span class="post-date">
                     <FormattedDate date={post.data.pubDate} />
-                  </p>
+                  </span>
                 </a>
               </li>
-            ))
-          }
-        </ul>
+            ))}
+          </ul>
+        ) : (
+          <p style="color: rgb(var(--gray)); font-style: italic;">No posts yet — first one coming soon.</p>
+        )}
       </section>
     </main>
     <Footer />

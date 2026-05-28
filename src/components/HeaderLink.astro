@@ -12,13 +12,14 @@ const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
 <a href={href} class:list={[className, { active: isActive }]} {...props}>
   <slot />
 </a>
+
 <style>
   a {
     display: inline-block;
     text-decoration: none;
   }
+  /* Active state appearance is handled by Header.astro's :global(a.active) */
   a.active {
-    font-weight: bolder;
-    text-decoration: underline;
+    text-decoration: none;
   }
 </style>

@@ -1,6 +1,6 @@
 ---
-title: 'First post'
-description: 'The Journey Begins'
+title: 'The Journey Begins'
+description: 'The first post'
 pubDate: 'May 28, 2026'
 ---
 

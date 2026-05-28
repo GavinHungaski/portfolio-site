@@ -9,14 +9,15 @@ import graduationPic from "../assets/graduation_pic.jpg";
   title="About Me"
   description="CS grad on a deliberate path toward Robotics & ML engineering. Here's where I'm coming from and where I'm headed."
 >
-  <section class="intro">
-    <p>
+  <!-- Intro -->
+  <section class="mb-10">
+    <p class="text-lg leading-[1.75]">
       Hey — I'm <strong>Gavin Hungaski</strong>, a recent computer science
       graduate based in the US. I got my start building full-stack web
       applications, but my real goal is to work in
       <strong>Robotics and Machine Learning engineering</strong>.
     </p>
-    <p>
+    <p class="text-lg leading-[1.75]">
       Rather than jumping into a course and calling it done, I'm taking a
       project-based approach: build real things, understand them deeply, write
       about what I learn, and document the whole journey publicly. This site is
@@ -24,13 +25,16 @@ import graduationPic from "../assets/graduation_pic.jpg";
     </p>
   </section>
 
-  <section class="section">
-    <h2>My Education</h2>
-    <div class="edu-content">
+  <!-- Education -->
+  <section class="mt-10">
+    <h2 class="text-[1.4rem] font-bold mb-3 text-[rgb(var(--black))]">
+      My Education
+    </h2>
+    <div class="flex flex-row items-center gap-4 max-sm:flex-col max-sm:items-start">
       <Image
         src={graduationPic}
         alt="Gavin Hungaski at graduation"
-        class="grad-photo"
+        class="w-full max-w-[360px] rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.12)] object-cover"
       />
       <p>
         I graduated from Kutztown University of Pennsylvania with a B.S. in
@@ -39,8 +43,11 @@ import graduationPic from "../assets/graduation_pic.jpg";
     </div>
   </section>
 
-  <section class="section">
-    <h2>Where I'm headed</h2>
+  <!-- Where I'm headed -->
+  <section class="mt-10">
+    <h2 class="text-[1.4rem] font-bold mb-3 text-[rgb(var(--black))]">
+      Where I'm headed
+    </h2>
     <p>
       My path runs through systems programming (C++, memory management, data
       structures from scratch), then into ML fundamentals (Autograd engine, CNN
@@ -51,29 +58,37 @@ import graduationPic from "../assets/graduation_pic.jpg";
     </p>
   </section>
 
-  <section class="section">
-    <h2>Certifications</h2>
-    <ul class="cert-list">
-      <li>
-        <span class="cert-badge">✅</span>
+  <!-- Certifications -->
+  <section class="mt-10">
+    <h2 class="text-[1.4rem] font-bold mb-3 text-[rgb(var(--black))]">
+      Certifications
+    </h2>
+    <ul class="list-none p-0 m-0 flex flex-col gap-3">
+      <li
+        class="flex items-center gap-3 px-4 py-3 bg-[var(--surface)] border border-[var(--border)] rounded-lg text-[0.95rem]"
+      >
+        <span class="text-lg">✅</span>
         <div>
           <strong>Full Stack Web Development</strong>
           <a
-            class="cert-issuer"
+            class="text-[rgb(var(--gray))] no-underline hover:text-[var(--accent)]"
             href="https://www.udemy.com/certificate/UC-d7449106-81ad-4113-8736-0a6b60622995/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span> — Udemy</span></a
-          >
+            <span> — Udemy</span>
+          </a>
         </div>
       </li>
     </ul>
   </section>
 
-  <section class="section">
-    <h2>Current Focus</h2>
-    <ul class="focus-list">
+  <!-- Current Focus -->
+  <section class="mt-10">
+    <h2 class="text-[1.4rem] font-bold mb-3 text-[rgb(var(--black))]">
+      Current Focus
+    </h2>
+    <ul class="list-none p-0 m-0 flex flex-col gap-2 text-[0.95rem] leading-relaxed">
       <li>
         🔧 <strong>C++ fundamentals</strong> — getting back up to speed with modern
         C++
@@ -86,34 +101,63 @@ import graduationPic from "../assets/graduation_pic.jpg";
     </ul>
   </section>
 
-  <section class="section">
-    <h2>Skills &amp; Tools</h2>
-    <div class="skill-groups">
-      <div class="skill-group">
-        <h3>Currently learning</h3>
-        <div class="tags">
-          <span class="tag">C++</span>
-          <span class="tag">Systems Programming</span>
-          <span class="tag">Memory Management</span>
+  <!-- Skills & Tools -->
+  <section class="mt-10">
+    <h2 class="text-[1.4rem] font-bold mb-3 text-[rgb(var(--black))]">
+      Skills &amp; Tools
+    </h2>
+    <div class="flex flex-col gap-5">
+      <!-- Currently learning -->
+      <div>
+        <h3
+          class="text-xs font-bold uppercase tracking-widest text-[rgb(var(--gray))] mb-2"
+        >
+          Currently learning
+        </h3>
+        <div class="flex flex-wrap gap-1.5">
+          {
+            ["C++", "Systems Programming", "Memory Management"].map((tag) => (
+              <span class="text-xs bg-[rgb(var(--gray-light))] text-[rgb(var(--gray-dark))] px-2.5 py-1 rounded font-mono">
+                {tag}
+              </span>
+            ))
+          }
         </div>
       </div>
-      <div class="skill-group">
-        <h3>Web background</h3>
-        <div class="tags">
-          <span class="tag">TypeScript</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">React</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">Astro</span>
-          <span class="tag">CSS</span>
-          <span class="tag">POSTGRESQL</span>
+
+      <!-- Web background -->
+      <div>
+        <h3
+          class="text-xs font-bold uppercase tracking-widest text-[rgb(var(--gray))] mb-2"
+        >
+          Web background
+        </h3>
+        <div class="flex flex-wrap gap-1.5">
+          {
+            [
+              "TypeScript",
+              "JavaScript",
+              "React",
+              "Node.js",
+              "Astro",
+              "CSS",
+              "PostgreSQL",
+            ].map((tag) => (
+              <span class="text-xs bg-[rgb(var(--gray-light))] text-[rgb(var(--gray-dark))] px-2.5 py-1 rounded font-mono">
+                {tag}
+              </span>
+            ))
+          }
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <h2>Get in touch</h2>
+  <!-- Get in touch -->
+  <section class="mt-10">
+    <h2 class="text-[1.4rem] font-bold mb-3 text-[rgb(var(--black))]">
+      Get in touch
+    </h2>
     <p>
       Find me on <a
         href={SOCIAL_LINKS.github}
@@ -129,92 +173,3 @@ import graduationPic from "../assets/graduation_pic.jpg";
     </p>
   </section>
 </AboutLayout>
-
-<style>
-  .intro p {
-    font-size: 1.05rem;
-    line-height: 1.75;
-  }
-  .section {
-    margin-top: 2.5em;
-  }
-
-  .section h2 {
-    font-size: 1.4rem;
-    margin-bottom: 0.75em;
-    color: rgb(var(--black));
-  }
-  .edu-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1em;
-  }
-  .grad-photo {
-    width: 100%;
-    max-width: 360px;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-    object-fit: cover;
-  }
-  .cert-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75em;
-  }
-  .cert-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.75em;
-    padding: 0.75em 1em;
-    background: #fff;
-    border: 1px solid rgb(var(--gray-light));
-    border-radius: 8px;
-    font-size: 0.95rem;
-  }
-  .cert-badge {
-    font-size: 1.1rem;
-  }
-  .cert-issuer {
-    color: rgb(var(--gray));
-    text-decoration: none;
-  }
-  .focus-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  .skill-groups {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25em;
-  }
-  .skill-group h3 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: rgb(var(--gray));
-    margin-bottom: 0.5em;
-  }
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4em;
-  }
-  .tag {
-    font-size: 0.8rem;
-    background: rgb(var(--gray-light));
-    color: rgb(var(--gray-dark));
-    padding: 0.25em 0.65em;
-    border-radius: 4px;
-    font-family: monospace;
-  }
-</style>

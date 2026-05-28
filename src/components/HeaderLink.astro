@@ -9,17 +9,15 @@ const subpath = pathname.match(/[^\/]+/g);
 const isActive = href === pathname || href === "/" + (subpath?.[0] || "");
 ---
 
-<a href={href} class:list={[className, { active: isActive }]} {...props}>
+<a
+  href={href}
+  class:list={[
+    "inline-block no-underline px-2.5 py-1.5 text-sm rounded-md transition-colors duration-150",
+    "text-[rgb(var(--gray-dark))] hover:text-[var(--accent)] hover:bg-[var(--surface-2)]",
+    { "text-[var(--accent)] font-bold bg-[var(--surface-2)]": isActive },
+    className,
+  ]}
+  {...props}
+>
   <slot />
 </a>
-
-<style>
-  a {
-    display: inline-block;
-    text-decoration: none;
-  }
-  /* Active state appearance is handled by Header.astro's :global(a.active) */
-  a.active {
-    text-decoration: none;
-  }
-</style>

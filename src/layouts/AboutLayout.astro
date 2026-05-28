@@ -1,7 +1,7 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 
 interface Props {
   title: string;
@@ -18,32 +18,13 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <Header />
-    <main>
-      <article class="about-content">
-        <h1>{title}</h1>
-        <hr />
+    <main class="max-w-[760px] mx-auto px-4 py-12">
+      <article class="text-[rgb(var(--gray-dark))]">
+        <h1 class="text-4xl font-bold mb-1 text-[rgb(var(--black))]">{title}</h1>
+        <hr class="my-4 mb-8 border-[var(--border)]" />
         <slot />
       </article>
     </main>
     <Footer />
   </body>
 </html>
-
-<style>
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 3em 1em;
-  }
-  h1 {
-    margin-bottom: 0.25em;
-    color: rgb(var(--black));
-  }
-  hr {
-    margin: 1em 0 2em;
-    border-color: var(--border);
-  }
-  .about-content {
-    color: rgb(var(--gray-dark));
-  }
-</style>

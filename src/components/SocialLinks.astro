@@ -1,5 +1,5 @@
 ---
-import { SOCIAL_LINKS } from '../consts';
+import { SOCIAL_LINKS } from "../consts";
 
 interface Props {
   class?: string;
@@ -8,8 +8,13 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<div class:list={['social-links', className]}>
-  <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer">
+<div class:list={["flex items-center gap-2", className]}>
+  <a
+    href={SOCIAL_LINKS.linkedin}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center no-underline text-inherit transition-colors duration-200 hover:text-[var(--accent)]"
+  >
     <span class="sr-only">Go to Gavin's LinkedIn profile</span>
     <svg viewBox="0 0 24 24" aria-hidden="true" width="28" height="28">
       <path
@@ -18,7 +23,12 @@ const { class: className } = Astro.props;
       ></path>
     </svg>
   </a>
-  <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer">
+  <a
+    href={SOCIAL_LINKS.github}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flex items-center no-underline text-inherit transition-colors duration-200 hover:text-[var(--accent)]"
+  >
     <span class="sr-only">Go to Gavin's GitHub profile</span>
     <svg viewBox="0 0 16 16" aria-hidden="true" width="28" height="28">
       <path
@@ -28,21 +38,3 @@ const { class: className } = Astro.props;
     </svg>
   </a>
 </div>
-
-<style>
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 0.5em;
-  }
-  .social-links a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.2s ease;
-  }
-  .social-links a:hover {
-    color: var(--accent);
-  }
-</style>

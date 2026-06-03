@@ -1,5 +1,5 @@
 ---
-title: 'The Journey Begins'
+title: 'C++ Here I Come'
 description: 'The second post'
 pubDate: 'June 3, 2026'
 ---

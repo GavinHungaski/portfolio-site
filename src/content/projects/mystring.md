@@ -1,12 +1,8 @@
 ---
 title: "Custom C++ MyString String Class"
 description: "A from-scratch C++ string class built to replace std::string, featuring full manual memory management, the Rule of Five, core string methods, operator overloads, a custom iterator, and an integrated test suite."
-<<<<<<< Updated upstream
-status: "Complete"
-=======
 status: "completed"
 repoUrl: "https://github.com/GavinHungaski/MyString"
->>>>>>> Stashed changes
 tags: ["C++", "Systems Programming", "String"]
 order: 1
 section: "roadmap"
